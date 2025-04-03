@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Menu } from "lucide-react"
+import ThemeSwitch from "./ui/theme_switch"
 
 export function Header() {
   return (
@@ -29,12 +30,9 @@ export function Header() {
           <Link href="/blog" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
             Blog
           </Link>
-          {/* <Link
-            href="/contact"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            Contact
-          </Link> */}
+          <div className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">          
+            <ThemeSwitch/>
+          </div>
         </nav>
         <div className="flex items-center space-x-4 flex-1 md:hidden justify-end">
           <DropdownMenu>

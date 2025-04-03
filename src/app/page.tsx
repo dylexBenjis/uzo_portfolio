@@ -6,6 +6,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Facebook, Linkedin, Mail, Twitter } from "lucide-react"
 import LinkScroll from "@/components/LinkScroll"
+import { publications } from "@/Publications/publications"
 
 
 export default function Home() {
@@ -151,38 +152,16 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-8 lg:grid-cols-2 lg:gap-12">
-              <FeaturedPublication
-                title="Long-term Effects of Preventative Cardiology Interventions"
-                journal="New England Journal of Medicine"
-                year="2023"
-                abstract="This study examines the 10-year outcomes of preventative cardiology interventions in high-risk patients, demonstrating significant reductions in mortality and morbidity rates."
-                doi="10.1056/NEJMoa2023123"
-                citations={42}
-              />
-              <FeaturedPublication
-                title="Novel Biomarkers for Early Detection of Cardiovascular Disease"
-                journal="Journal of the American College of Cardiology"
-                year="2022"
-                abstract="Identification and validation of new biomarkers that enable earlier detection of cardiovascular disease, potentially allowing for more timely interventions."
-                doi="10.1016/j.jacc.2022.08.015"
-                citations={78}
-              />
-              <FeaturedPublication
-                title="Artificial Intelligence in Cardiac Imaging: Current Applications and Future Directions"
-                journal="Circulation"
-                year="2021"
-                abstract="A comprehensive review of how AI technologies are transforming cardiac imaging, improving diagnostic accuracy and efficiency."
-                doi="10.1161/CIRCULATIONAHA.121.054677"
-                citations={103}
-              />
-              <FeaturedPublication
-                title="Patient-Centered Approaches to Cardiovascular Disease Management"
-                journal="JAMA Cardiology"
-                year="2020"
-                abstract="This paper outlines innovative patient-centered strategies for managing cardiovascular disease, emphasizing shared decision-making and personalized care plans."
-                doi="10.1001/jamacardio.2020.3344"
-                citations={91}
-              />
+              {publications.map((data, index)=>{
+                return <FeaturedPublication key={index}
+                title={data.title}
+                journal={data.journal}
+                year={data.year}
+                abstract={data.abstract}       
+                doi={data.doi}
+                citations={data.citations}
+              />})}
+
             </div>
             <div className="flex justify-center">
               <Button variant="outline" asChild className="mt-8">

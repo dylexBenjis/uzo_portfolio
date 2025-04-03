@@ -10,7 +10,7 @@ interface FeaturedPublicationProps {
   year: string
   abstract: string
   doi: string
-  citations: number
+  citations: string
 }
 
 export function FeaturedPublication({ title, journal, year, abstract, doi, citations }: FeaturedPublicationProps) {
@@ -18,12 +18,12 @@ export function FeaturedPublication({ title, journal, year, abstract, doi, citat
     <Card className="flex flex-col h-full">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <Badge variant="outline" className="mb-2">
+          <Badge variant="secondary" className="w-auto gap-8 mb-2 flex items-center justify-between">
             {journal}
-          </Badge>
           <span className="text-sm text-muted-foreground">{year}</span>
+          </Badge>
         </div>
-        <CardTitle className="line-clamp-2">{title}</CardTitle>
+        <CardTitle className="">{title}</CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
         <p className="text-muted-foreground line-clamp-4">{abstract}</p>
@@ -34,7 +34,7 @@ export function FeaturedPublication({ title, journal, year, abstract, doi, citat
           <span>Citations: {citations}</span>
         </div>
         <Button variant="outline" size="sm" asChild>
-          <Link href={`https://doi.org/${doi}`} target="_blank" rel="noopener noreferrer">
+          <Link href={`${doi}`} target="_blank" rel="noopener noreferrer">
             <BookOpen className="mr-2 h-4 w-4" />
             Read Paper
           </Link>
