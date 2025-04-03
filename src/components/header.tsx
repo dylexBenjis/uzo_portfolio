@@ -55,9 +55,9 @@ export function Header() {
               <DropdownMenuItem asChild>
                 <Link href="/blog">Blog</Link>
               </DropdownMenuItem>
-              {/* <DropdownMenuItem asChild>
-                <Link href="/contact">Contact</Link>
-              </DropdownMenuItem> */}
+              <DropdownMenuItem asChild>
+                <div><ThemeSwitch/></div>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
