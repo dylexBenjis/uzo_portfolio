@@ -6,10 +6,16 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Facebook, Linkedin, Mail, Twitter } from "lucide-react"
 import LinkScroll from "@/components/LinkScroll"
-import { publications } from "@/Publications/publications"
+import { publications } from "@/EDIT_THIS/Publications/publications"
+import { FrontPage } from "@/EDIT_THIS/HomePage/FrontPage"
+import { getBlogPosts } from "./blog/utils"
 
 
 export default function Home() {
+
+  //get all blogposts/articles
+  let allBlogPosts = getBlogPosts();
+  
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -21,12 +27,11 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Bridget Chukwudile                  </h1>
-                  <p className="text-xl text-muted-foreground">Cardiologist & Medical Researcher</p>
+                   {FrontPage.head}               </h1>
+                  <p className="text-xl text-muted-foreground text-gray-700 dark:text-gray-300 font-bold">{FrontPage.title}</p>
                 </div>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                  Dedicated to advancing cardiovascular health through innovative research and compassionate patient
-                  care.
+                  {FrontPage.description}
                 </p>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Button asChild className="cursor-pointer">
@@ -46,7 +51,7 @@ export default function Home() {
           spyThrottle={500}>Contact Me</LinkScroll>
                   </Button>
                 </div>            
-                <div className="flex space-x-4 px-5">
+                <div className="flex space-x-4">
               <Link href="#" className="text-muted-foreground hover:text-foreground">
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
@@ -68,8 +73,8 @@ export default function Home() {
               <img
                 alt="Dr. Sarah Johnson"
                 className="mx-auto aspect-square overflow-hidden rounded-full object-cover object-center sm:w-full lg:order-last"
-                height="550"
-                src="/placeholder.svg?height=550&width=550"
+                height="350"
+                src={FrontPage.image||'placeholder.svg'}
                 width="550"
               />
             </div>
@@ -184,30 +189,27 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-8 md:grid-cols-2 lg:grid-cols-3">
-              <BlogPostCard
-                title="Understanding Heart Health: Beyond the Basics"
-                excerpt="What everyone should know about maintaining cardiovascular health in today's fast-paced world."
-                date="March 15, 2023"
+            {allBlogPosts
+            .sort((a, b) => {
+              if (
+                new Date(a.metadata.publishedAt) >
+                new Date(b.metadata.publishedAt)
+              ) {
+                return -1;
+              }
+              return 1;
+            })
+            .slice(0,3)
+            .map((post) => {
+              return (<BlogPostCard
+                title={post.metadata.title}
+                excerpt={post.metadata.summary}
+                date={post.metadata.publishedAt}
                 category="Heart Health"
-                image="/placeholder.svg?height=200&width=300"
-                slug="/blog/understanding-heart-health"
-              />
-              <BlogPostCard
-                title="The Future of Telemedicine in Cardiology"
-                excerpt="How remote monitoring and virtual consultations are transforming cardiac care delivery."
-                date="February 28, 2023"
-                category="Technology"
-                image="/placeholder.svg?height=200&width=300"
-                slug="/blog/telemedicine-cardiology"
-              />
-              <BlogPostCard
-                title="Nutrition Myths and Heart Disease Prevention"
-                excerpt="Separating fact from fiction when it comes to dietary recommendations for heart health."
-                date="January 10, 2023"
-                category="Nutrition"
-                image="/placeholder.svg?height=200&width=300"
-                slug="/blog/nutrition-myths-heart-disease"
-              />
+                image={post.metadata.image}
+                image_alt={post.metadata.imageAlt}
+                slug={post.slug}
+              />)})}
             </div>
             <div className="flex justify-center">
               <Button variant="outline" asChild className="mt-4">

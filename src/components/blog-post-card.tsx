@@ -1,22 +1,29 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import Image from "next/image"
 
 interface BlogPostCardProps {
   title: string
   excerpt: string
   date: string
+  image_alt:string
   category: string
-  image: string
+  image?: string
   slug: string
 }
 
-export function BlogPostCard({ title, excerpt, date, category, image, slug }: BlogPostCardProps) {
+export function BlogPostCard({ title, excerpt, date, category, image, slug, image_alt }: BlogPostCardProps) {
   return (
     <Card className="overflow-hidden h-full flex flex-col">
       <div className="aspect-video relative">
-        <img src={image || "/placeholder.svg"} alt={title} className="object-cover w-full h-full" />
-      </div>
+      <div className="flex relative h-full w-full overflow-hidden bg-gray-100">
+            <Image
+              src={image||'/placeholder.svg'} alt={image_alt}
+              fill={true}
+              objectFit="cover"
+            />
+          </div>      </div>
       <CardHeader className="p-4">
         <div className="flex items-center justify-between mb-2">
           <Badge variant="secondary">{category}</Badge>
