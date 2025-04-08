@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { CustomMDX } from "@/mdx-components";
 import { formatDate, getBlogPosts } from "@/app/blog/utils";
 import { baseUrl } from "@/app/sitemap";
-import styles from "@/app/page.module.css";
 import Image from "next/image";
 import { FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
@@ -92,7 +91,7 @@ export default async function Blog({ params }: Readonly<{ params: Params }>) {
       />
       <div className="py-[5rem]">
         <div
-          className={styles.container}
+          className='container'
           style={{ display: "flex", justifyContent: "center" }}
         >
           <div className="w-[600px] prose dark:prose-invert">
