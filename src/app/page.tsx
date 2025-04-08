@@ -200,8 +200,9 @@ export default function Home() {
               return 1;
             })
             .slice(0,3)
-            .map((post) => {
+            .map((post, index) => {
               return (<BlogPostCard
+              key={index}
                 title={post.metadata.title}
                 excerpt={post.metadata.summary}
                 date={post.metadata.publishedAt}

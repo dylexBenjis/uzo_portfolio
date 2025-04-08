@@ -62,7 +62,6 @@ export default function BlogPage(props: allBlogPostsProps ) {
     })
 },[])
 
-console.log('g0Up', go_up, window.scrollY)
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -109,8 +108,9 @@ console.log('g0Up', go_up, window.scrollY)
               }
               return 1;
             }).slice(position.a, position.b)
-            .map((post) => {
-              return (<div data-aos='fade-in' data-aos-once='true'><BlogPostCard
+            .map((post,index) => {
+              return (<div data-aos='fade-in' data-aos-once='true'
+              key={index}><BlogPostCard
                 title={post.metadata.title}
                 excerpt={post.metadata.summary}
                 date={post.metadata.publishedAt}
