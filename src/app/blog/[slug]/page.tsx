@@ -5,6 +5,8 @@ import { baseUrl } from "@/app/sitemap";
 import Image from "next/image";
 import { FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -89,8 +91,9 @@ export default async function Blog({ params }: Readonly<{ params: Params }>) {
           }),
         }}
       />
-      <div className="py-[5rem]">
-        <div
+      <Header/>
+      <div className="flex justify-center w-full py-12 md:py-16 bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-950">
+      <div
           className='container'
           style={{ display: "flex", justifyContent: "center" }}
         >
@@ -131,6 +134,7 @@ export default async function Blog({ params }: Readonly<{ params: Params }>) {
           </div>
         </div>
       </div>
+      <Footer/>
     </section>
   );
 }

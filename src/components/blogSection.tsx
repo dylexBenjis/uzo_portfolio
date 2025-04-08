@@ -117,7 +117,7 @@ console.log('g0Up', go_up, window.scrollY)
                 category="Heart Health"
                 image={post.metadata.image}
                 image_alt={post.metadata.imageAlt}
-                slug={post.slug}
+                slug={`/blog/${post.slug}`}
               /></div>)})}
             </div>
 
