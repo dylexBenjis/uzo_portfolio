@@ -125,7 +125,7 @@ export default function BlogPage(props: allBlogPostsProps ) {
               <Button variant="outline" onClick={()=>setView_all(true)}>Load More Articles</Button>
             </div>}
 
-            {go_up&&<Button onClick={()=>{window.scrollTo({top:0, behavior:'smooth'})}} className=" cursor-pointer fixed h-[50px] w-[50px] bg-yellow-500 right-2 lg:right-16 bottom-2" style={{opacity:go_up?1:0, transition: 'opacity 13s ease-in-out'}}><ArrowUp/></Button>}
+            {go_up&&<Button onClick={()=>{window.scrollTo({top:0, behavior:'smooth'})}} className=" cursor-pointer fixed h-[50px] w-[50px] bg-orange-300 dark:bg-gray-300 right-2 lg:right-20 lg:bottom-20 bottom-2" style={{opacity:go_up?1:0, transition: 'opacity 13s ease-in-out'}}><ArrowUp/></Button>}
           </div>
         </section>
       </main>

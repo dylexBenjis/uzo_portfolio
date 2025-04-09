@@ -1,10 +1,13 @@
+'use client'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Menu } from "lucide-react"
 import ThemeSwitch from "./ui/theme_switch"
+import { usePathname } from "next/navigation"
 
 export function Header() {
+  let pathname= usePathname();
   return (
     <header className="flex sticky top-0 z-50 justify-center w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex relative h-16 max-w-[1200px] items-center justify-between w-full p-2">
@@ -12,12 +15,12 @@ export function Header() {
           Bridget Chukwudile
         </Link>
         <nav className="hidden md:flex gap-6">
-          <Link href="/" className="text-sm font-medium transition-colors hover:text-primary">
+          <Link href="/" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" style={{color:pathname==='/'?'var(--text-primary':''}}>
             Home
           </Link>
           <Link
             href="/about"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" style={{color:pathname==='/about'?'var(--text-primary':''}}
           >
             About
           </Link>
@@ -27,7 +30,7 @@ export function Header() {
           >
             Publications
           </Link> */}
-          <Link href="/blog" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+          <Link href="/blog" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" style={{color:pathname==='/blog'?'var(--text-primary':''}}>
             Blog
           </Link>
           <div className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">          
